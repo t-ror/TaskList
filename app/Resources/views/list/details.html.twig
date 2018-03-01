@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <a href="/list" class="button">Zpět</a>
+    <h2 class="subheader">{{ task.task }}</h2>
+    <hr>
+    <div>
+        <i>{{ task.dueDate|date(" d/m/Y h:s")  }}</i>
+    </div>
+    <p>
+        {{ task.description }}</p>
+{% endblock %}

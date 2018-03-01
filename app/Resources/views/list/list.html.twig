@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h2 class="subheader">List úkolů</h2>
+    <hr>
+    <div class="cell medium-8">
+        <a href="/create" class="button">Vytvoř úkol</a>
+    </div>
+    <table class="stacked">
+        <tr style="text-align: left">
+            <th>
+                #
+            </th>
+            <th>
+                Úkol
+            </th>
+            <th>
+                Datum vykonání
+            </th>
+            <th>
+
+            </th>
+        </tr>
+
+        {% for task in tasks %}
+            <tr>
+                <td>
+                    {{ task.id }}
+                </td>
+                <td>
+                    <a href="/details/{{ task.id }}">{{  task.task }}</a>
+                </td>
+                <td>
+                    {{  task.dueDate|date(" d.m. Y h:i") }}
+                </td>
+                <td>
+                    <div style="text-align: right">
+                        <a href="/edit/{{ task.id }}" class="button success">Upravit</a>
+                        <a href="/delete/{{ task.id }}" class="button alert">Smazat</a>
+                    </div>
+                </td>
+            </tr>
+        {%  endfor %}
+
+    </table>
+
+{% endblock %}

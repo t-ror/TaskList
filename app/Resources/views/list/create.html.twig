@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <a href="/list" class="button">Zpět</a>
+    <h2 class="subheader">Vytvoř úkol</h2>
+    <hr>
+
+    {{ form_start(form) }}
+
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+{% endblock %}

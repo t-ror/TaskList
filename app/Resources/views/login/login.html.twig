@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h2 class="subheader">Přihlášení</h2>
+    <hr>
+
+    {% if errors %}
+        <div data-alert class="alert-box">
+            {{ errors.messageKey }}
+        </div>
+    {% endif %}
+    {{ form_start(form) }}
+    {{ form_row(form.username, {'full_name':'_username'}) }}
+    {{ form_row(form.password, {'full_name':'_password'}) }}
+    {{ form_end(form) }}
+{% endblock %}
+

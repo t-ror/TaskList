@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="stylesheet" href="{{ asset('css/foundation.css') }}" />
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
+
+
+
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        <!-- Start Top Bar -->
+        <div class="top-bar">
+            <div class="top-bar-left">
+                <ul class="menu">
+                    <li class="menu-text">TaskList</li>
+                    <li><a href="/">Home</a></li>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <li><a href="/list">Můj list úkolů</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="top-bar-right">
+                <ul class="menu">
+
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <li style="margin-right: 15px">Přihlášen jako <strong>{{ app.user.username }}</strong> </li>
+                        <li><a href="{{ logout_path() }}" class="button alert">Odhlásit se</a></li>
+                    {% else %}
+                        <li><a href="/login" class="button">Přihlásit se</a></li>
+                        <li><a href="/register" class="hollow button">Registrovat</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    <!-- End Top Bar -->
+        <article class="grid-container">
+            <div class="grid-x align-center">
+                <div class="cell medium-10">
+                    {% block body %}{% endblock %}
+                </div>
+            </div>
+        </article>
+        {% block javascripts %}{% endblock %}
+        <script src="{{ asset('js/vendor/foundation.js') }}"></script>
+        <script src="{{ asset('js/vendor/jquery.js') }}"></script>
+        <script src="{{ asset('js/vendor/what-input.js') }}"></script>
+        <script src="{{ asset('js/app.js') }}"></script>
+    </body>
+</html>
