@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <a href="/user/list" class="button">Zpět</a>
+    <h2 class="subheader">{{ user.username }}</h2>
+    <hr>
+    <div>
+        <i>{{ user.email  }}</i>
+    </div>
+{% endblock %}

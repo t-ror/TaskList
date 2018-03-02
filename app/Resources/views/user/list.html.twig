@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h2 class="subheader">Seznam uživatelů</h2>
+    <hr>
+    <table class="stacked">
+        <tr style="text-align: left">
+            <th>
+                id
+            </th>
+            <th>
+                Uživatelské jmnéno
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+
+            </th>
+        </tr>
+
+        {% for user in users %}
+            <tr>
+                <td>
+                    {{ user.id }}
+                </td>
+                <td>
+                    <a href="/user/details/{{ user.id }}">{{  user.username }}</a>
+                </td>
+                <td>
+                    {{  user.email }}
+                </td>
+                <td>
+                    <div style="text-align: right">
+                        <a href="/user/details/{{ user.id }}" class="button alert">Smazat</a>
+                    </div>
+                </td>
+            </tr>
+        {%  endfor %}
+
+    </table>
+
+{% endblock %}

@@ -153,7 +153,7 @@ class ListController extends Controller
             ->getRepository(TaskE::class)
             ->find($id);
 
-        return $this->render('list/details.html.twig', array(
+        return $this->render('list/list.html.twig', array(
             'task' => $task,
         ));
     }

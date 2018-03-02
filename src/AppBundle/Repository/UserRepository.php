@@ -3,6 +3,7 @@
 namespace AppBundle\Repository;
 use Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use AppBundle\Entity\User;
 
 /**
  * UserRepository
@@ -32,5 +33,22 @@ class UserRepository extends \Doctrine\ORM\EntityRepository implements UserLoade
             ->getQuery()
             ->getOneOrNullResult()
         ;
+    }
+
+    /**
+     * @param $id
+     *
+     * @return $array
+     */
+    public function loadUserList($id)
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            'SELECT u
+            FROM AppBundle:User u
+            WHERE u.id != :id
+            ORDER BY u.id ASC'
+        )->setParameter('id', $id);
+        return $query->execute();
     }
 }

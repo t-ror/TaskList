@@ -19,7 +19,8 @@
                     <li class="menu-text">TaskList</li>
                     <li><a href="/">Home</a></li>
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                        <li><a href="/list">Můj list úkolů</a></li>
+                        <li><a href="/list">Úkoly</a></li>
+                        <li><a href="/user/list">Uživatelé</a></li>
                     {% endif %}
                 </ul>
             </div>
@@ -27,7 +28,8 @@
                 <ul class="menu">
 
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                        <li style="margin-right: 15px">Přihlášen jako <strong>{{ app.user.username }}</strong> </li>
+                        <li style="margin-right: 15px">Přihlášen jako <trong>{{ app.user.username }}</trong> </li>
+                        <li><a href="/user/details/{{ app.user.id }}" class="button">Profil</a></li>
                         <li><a href="{{ logout_path() }}" class="button alert">Odhlásit se</a></li>
                     {% else %}
                         <li><a href="/login" class="button">Přihlásit se</a></li>

@@ -24,8 +24,6 @@ class LoginController extends Controller
         $lastUserName = $authenticationUtils->getLastUsername();
         $form = $this->createForm(LogInType::class);
 
-        $em = $this->getDoctrine()->getManager();
-
         $form->handleRequest($request);
         return $this->render('login/login.html.twig', array(
             'form' => $form->createView(),
