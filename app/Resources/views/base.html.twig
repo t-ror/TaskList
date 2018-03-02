@@ -28,7 +28,7 @@
                 <ul class="menu">
 
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                        <li style="margin-right: 15px">Přihlášen jako <trong>{{ app.user.username }}</trong> </li>
+                        <li style="margin-right: 15px">Přihlášen jako <strong>{{ app.user.username }}</strong> </li>
                         <li><a href="/user/details/{{ app.user.id }}" class="button">Profil</a></li>
                         <li><a href="{{ logout_path() }}" class="button alert">Odhlásit se</a></li>
                     {% else %}
