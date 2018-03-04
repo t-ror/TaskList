@@ -28,6 +28,7 @@ class ListController extends Controller
      * @Route ("/list", name="list_of_tasks")
      *
      * @param UserInterface $user
+     *
      * @return Response
      */
     public function listAction(UserInterface $user)
@@ -36,7 +37,7 @@ class ListController extends Controller
             ->getRepository(TaskE::class)
             ->findBy(
                 ['id_user' => $user->getId()],
-                ['dueDate'=>'ASC']
+                ['dueDate' => 'ASC']
             );
 
         return $this->render('list/list.html.twig', array(
@@ -48,7 +49,8 @@ class ListController extends Controller
      *
      * @Route("/create", name="create task")
      *
-     * @param Request $request
+     * @param Request       $request
+     * @param UserInterface $user
      *
      * @return Response
      */
@@ -153,7 +155,7 @@ class ListController extends Controller
             ->getRepository(TaskE::class)
             ->find($id);
 
-        return $this->render('list/list.html.twig', array(
+        return $this->render('list/details.html.twig', array(
             'task' => $task,
         ));
     }

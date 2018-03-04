@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Created by PhpStorm.
+ * User: root
+ * Date: 25.2.18
+ * Time: 18:31
+ */
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
@@ -8,13 +13,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+/**
+ * Class UserController
+ */
 class UserController extends Controller
 {
     /**
      *
      * @Route("user/details/{id}", name="user_details")
      *
-     * @param $id
+     * @param int $id
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -48,4 +56,26 @@ class UserController extends Controller
         ));
     }
 
+    /**
+     *
+     * @Route("/user/delete/{id}", name="delete_user")
+     *
+     * @param int $id
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function deleteAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $user = $this->getDoctrine()
+            ->getRepository(User::class)
+            ->find($id);
+
+        $em->remove($user);
+
+        $em->flush();
+
+        return $this->redirectToRoute('user_list');
+    }
 }

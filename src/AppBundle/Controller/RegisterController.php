@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Created by PhpStorm.
+ * User: root
+ * Date: 25.2.18
+ * Time: 18:31
+ */
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
@@ -9,12 +14,15 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
+/**
+ * Class RegisterController
+ */
 class RegisterController extends Controller
 {
     /**
      * @Route("/register")
      *
-     * @param Request $request
+     * @param Request                      $request
      * @param UserPasswordEncoderInterface $encoder
      *
      * @return \Symfony\Component\HttpFoundation\Response
@@ -28,7 +36,7 @@ class RegisterController extends Controller
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             // Create user
             $user->setPassword($encoder->encodePassword($user, $user->getPassword()));
 
@@ -42,5 +50,4 @@ class RegisterController extends Controller
             'form' => $form->createView(),
         ));
     }
-
 }
