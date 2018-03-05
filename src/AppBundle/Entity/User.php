@@ -20,7 +20,7 @@ class User implements UserInterface
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer", unique=true)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -48,6 +48,26 @@ class User implements UserInterface
      */
     private $password;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="picture", type="string", length=255)
+     */
+    private $picture;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="location", type="string", length=255)
+     */
+    private $location;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=255)
+     */
+    private $descrption;
 
     /**
      * Get id
@@ -176,5 +196,76 @@ class User implements UserInterface
     {
         // TODO: Implement eraseCredentials() method.
     }
-}
 
+    /**
+     * Set picture
+     *
+     * @param string $picture
+     *
+     * @return User
+     */
+    public function setPicture($picture)
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+
+    /**
+     * Get picture
+     *
+     * @return string
+     */
+    public function getPicture()
+    {
+        return $this->picture;
+    }
+
+    /**
+     * Set location
+     *
+     * @param string $location
+     *
+     * @return User
+     */
+    public function setLocation($location)
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
+    /**
+     * Get location
+     *
+     * @return string
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * Set descrption
+     *
+     * @param string $descrption
+     *
+     * @return User
+     */
+    public function setDescrption($descrption)
+    {
+        $this->descrption = $descrption;
+
+        return $this;
+    }
+
+    /**
+     * Get descrption
+     *
+     * @return string
+     */
+    public function getDescrption()
+    {
+        return $this->descrption;
+    }
+}

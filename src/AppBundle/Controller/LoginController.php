@@ -35,11 +35,19 @@ class LoginController extends Controller
         $form = $this->createForm(LogInType::class);
 
         $form->handleRequest($request);
-
         return $this->render('login/login.html.twig', array(
             'form' => $form->createView(),
             'errors' => $errors,
             'username' => $lastUserName,
         ));
+    }
+
+    /**
+     *
+     * @Route ("/logout", name="logout")
+     */
+    public function logoutAction(){
+
+
     }
 }
