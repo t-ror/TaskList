@@ -2,9 +2,24 @@
 
 {% block body %}
     <a href="/user/list" class="button">Zpět</a>
+    <a href="/user/edit/{{ user.id }}" class="button">Upravit</a>
     <h2 class="subheader">{{ user.username }}</h2>
     <hr>
     <div>
-        <i>{{ user.email  }}</i>
+        <ul>
+            <li>
+                <i>{{ user.email }}</i>
+            </li>
+            <li>
+                Datum registarce: {{ user.registerDate|date(" d.m. Y") }}
+            </li>
+            <li>
+                Město: {{ user.location }}
+            </li>
+        </ul>
+        Popis:
+        <p>
+            {{ user.description }}
+        </p>
     </div>
 {% endblock %}

@@ -13,6 +13,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Validator\Constraints\Date;
+use Symfony\Component\VarDumper\Cloner\Data;
 
 /**
  * Class RegisterController
@@ -39,6 +41,7 @@ class RegisterController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             // Create user
             $user->setPassword($encoder->encodePassword($user, $user->getPassword()));
+            $user->setRegisterDate(new \DateTime('now'));
 
             $em->persist($user);
             $em->flush();

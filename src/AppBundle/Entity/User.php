@@ -51,23 +51,30 @@ class User implements UserInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="picture", type="string", length=255)
+     * @ORM\Column(name="picture", type="string", length=255, nullable=true)
      */
     private $picture;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="location", type="string", length=255)
+     * @ORM\Column(name="location", type="string", length=255, nullable=true)
      */
     private $location;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=255)
+     * @ORM\Column(name="description", type="string", length=255, nullable=true)
      */
-    private $descrption;
+    private $description;
+
+    /**
+     * @var Date
+     *
+     * @ORM\Column(name="registerDate", type="date")
+     */
+    private $registerDate;
 
     /**
      * Get id
@@ -246,26 +253,50 @@ class User implements UserInterface
     }
 
     /**
-     * Set descrption
+     * Set registerDate
      *
-     * @param string $descrption
+     * @param \DateTime $registerDate
      *
      * @return User
      */
-    public function setDescrption($descrption)
+    public function setRegisterDate($registerDate)
     {
-        $this->descrption = $descrption;
+        $this->registerDate = $registerDate;
 
         return $this;
     }
 
     /**
-     * Get descrption
+     * Get registerDate
+     *
+     * @return \DateTime
+     */
+    public function getRegisterDate()
+    {
+        return $this->registerDate;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return User
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
      *
      * @return string
      */
-    public function getDescrption()
+    public function getDescription()
     {
-        return $this->descrption;
+        return $this->description;
     }
 }

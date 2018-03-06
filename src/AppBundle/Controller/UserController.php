@@ -8,9 +8,11 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
+use AppBundle\Forms\UserEditType;
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -77,5 +79,43 @@ class UserController extends Controller
         $em->flush();
 
         return $this->redirectToRoute('user_list');
+    }
+
+    /**
+     *
+     * @Route("/user/edit/{id}", name="edit_user")
+     *
+     * @param Request $request
+     * @param int $id
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
+    public function editAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $user = $this->getDoctrine()
+            ->getRepository(User::class)
+            ->find($id);
+
+        $form = $this->createForm(UserEditType::class, $user);
+
+        $form->handleRequest($request);
+
+        if ($form->isValid() && $form->isSubmitted()) {
+            $user->setLocation($form['location']->getData());
+            $user->setLocation($form['description']->getData());
+
+            $em->persist($user);
+
+            $em->flush();
+
+            return $this->redirectToRoute('user_list');
+        }
+
+        return $this->render('/user/edit.html.twig', array(
+            'form' => $form->createView(),
+            'user' => $user,
+        ));
     }
 }
